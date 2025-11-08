@@ -60,7 +60,7 @@ export default function Experience() {
         <div className="relative w-full h-[330px] flex items-center justify-center">
           {/* Timeline horizontally centered */}
           <motion.div
-            className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-[75vw] h-[3px] bg-gradient-to-r from-transparent via-cyan-400/80 to-transparent opacity-80 rounded-full shadow-[0_0_25px_2px_rgba(34,211,238,0.3)]"
+            className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-[75vw] h-[3px] bg-linear-to-r from-transparent via-cyan-400/80 to-transparent opacity-80 rounded-full shadow-[0_0_25px_2px_rgba(34,211,238,0.3)]"
             layout
           >
             {/* Timeline dots; spaced left-right */}

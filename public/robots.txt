@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://priyanshu-kumar-singh-portfolio.vercel.app
+
+# Sitemaps
+Sitemap: https://priyanshu-kumar-singh-portfolio.vercel.app/sitemap.xml
