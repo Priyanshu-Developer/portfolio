@@ -1,23 +1,7 @@
 "use client";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent, useVelocity } from "motion/react";
 import { useEffect, useMemo, useRef, useState } from "react";
-
-const useIsMobile = (query = "(max-width: 639px)") => {
-  const [isMobile, setIsMobile] = useState<boolean>(
-    typeof window !== "undefined" && window.matchMedia(query).matches
-  );
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const mediaQuery = window.matchMedia(query);
-    const handleChange = (event: MediaQueryListEvent) => {
-      setIsMobile(event.matches);
-    };
-    mediaQuery.addEventListener("change", handleChange);
-    setIsMobile(mediaQuery.matches);
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, [query]);
-  return isMobile;
-};
+import useIsMobile  from "@/lib/is-mobile";
 
 export default function Projects() {
   const isMobile = useIsMobile();

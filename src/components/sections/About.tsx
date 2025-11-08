@@ -16,7 +16,7 @@ export default function About() {
     "top-1/2 left-1/2 w-[220px] h-[220px] opacity-15 blur-[130px] -translate-x-1/2 -translate-y-1/2",
   ]
   return (
-    <section id="about" className="min-h-screen w-full flex items-center justify-center relative text-white overflow-hidden">
+    <section id="about" className="min-h-screen w-full flex items-center justify-center relative text-white  overflow-hidden">
       {glows.map((glow, index) => (
         <div
           key={index}

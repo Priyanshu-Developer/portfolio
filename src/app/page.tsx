@@ -13,7 +13,7 @@ import CustomCursor from "../components/custom/CustomCursor";
 
 export default function Page() {
   return (
-    <div className="bg-white text-black dark:bg-gray-900 dark:text-white scroll-smooth w-full" >
+    <div className=" text-black bg-gray-900 dark:text-white scroll-smooth w-full" >
       <ParticleBackground />
       <CustomCursor />
       <Navbar />

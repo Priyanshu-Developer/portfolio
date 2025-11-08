@@ -3,6 +3,18 @@
   --font-poppins: 'Poppins', sans-serif;
   --font-roboto: 'Roboto', sans-serif;
   font-family: var(--font-poppins);
+  color-scheme: dark;
+}
+
+
+@theme {
+  --color-background: #0a0a0a;
+  --color-foreground: #ffffff;
+}
+/* Optional: darken body background */
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
 }
 
 .font-poppins {
@@ -12,3 +24,10 @@
 .font-roboto {
   font-family: var(--font-roboto);
 }
+
+html.dark {
+  color-scheme: dark;
+  background-color: hsl(var(--background, 0 0% 3%)); /* fallback dark bg */
+  color: hsl(var(--foreground, 0 0% 98%));
+}
+

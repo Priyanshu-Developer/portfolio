@@ -21,6 +21,8 @@ import { SiArchlinux } from 'react-icons/si';
 import { SiMetasploit } from 'react-icons/si';
 import { SiOpenai } from 'react-icons/si';
 import { SiCyberdefenders } from 'react-icons/si';
+import { FaAws } from "react-icons/fa";
+import { FaGitAlt } from "react-icons/fa";
 
 export default function SkillsSection() {
   const skills = useMemo(
@@ -37,6 +39,8 @@ export default function SkillsSection() {
     { name: "Tailwind CSS", color: "#38bdf8", icon: <SiTailwindcss /> },
     { name: "Docker", color: "#0db7ed", icon: <SiDocker /> },
     { name: "Linux", color: "#fcc624", icon: <SiLinux /> },
+    { name: "Git", color: "#f05032", icon: <FaGitAlt /> }, // using Git icon
+    { name: "AWS", color: "#ff9900", icon: <FaAws /> }, // using AWS icon
 
     // --- Cybersecurity & Blockchain Security ---
     { name: "Arch Linux", color: "#5c7aff", icon: <SiArchlinux /> },
@@ -98,7 +102,7 @@ export default function SkillsSection() {
             ></motion.span>
 
             {/* shine (optional, subtle and quick) */}
-            <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent translate-x-full group-hover:translate-x-[-100%] transition-transform duration-300 ease-out"></span>
+            <span className="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/40 to-transparent translate-x-full group-hover:translate-x-full transition-transform duration-300 ease-out"></span>
 
             {/* icon + text */}
             <span className="relative z-10 flex items-center gap-2 group-hover:text-black transition-colors duration-150">

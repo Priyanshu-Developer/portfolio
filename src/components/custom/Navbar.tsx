@@ -2,6 +2,7 @@
 import Image from "next/image";
 import React from "react";
 import { AnimatedHamburger } from "./AnimatedHamburger";
+import { IoMdCloudDownload } from "react-icons/io";
 
 const MenuItems = [
   { name: "Home", link: "#home" },
@@ -58,6 +59,7 @@ function MobileMenuButton({ name, link }: { name: string; link: string }) {
 export default function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
   const toggleMenu = () => setIsOpen((prev) => !prev);
+  const isMobile = React.useMemo(() => window.innerWidth < 768, []);
 
   React.useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
@@ -96,18 +98,30 @@ export default function Navbar() {
         {MenuItems.map((item) => (
           <MobileMenuButton key={item.name} name={item.name} link={item.link} />
         ))}
+        <a
+        href="/Priyanshu-infosec.pdf"
+        download
+        aria-label="Download resume"
+        className="inline-block rounded-full p-0.5 bg-linear-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 transition"
+      >
+        <span className="block rounded-full bg-white dark:bg-gray-900 px-4 py-2 text-sm font-medium text-gray-900 dark:text-white hover:text-blue-500 dark:hover:text-blue-400 transition sm:text-base">
+          Download Resume
+        </span>
+      </a>
       </div>
 
+      {isMobile == false ?(  
       <a
         href="/Priyanshu-infosec.pdf"
         download
         aria-label="Download resume"
         className="inline-block rounded-full p-0.5 bg-linear-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 transition"
       >
-        <span className="block rounded-full bg-white dark:bg-gray-900 px-4 py-2 text-sm font-medium text-gray-900 dark:text-white">
+        <span className="block rounded-full bg-white dark:bg-gray-900 px-4 py-2 text-sm font-medium text-gray-900 dark:text-white hover:text-blue-500 dark:hover:text-blue-400 transition sm:text-base">
           Download Resume
         </span>
       </a>
+      ):""}
     </nav>
   );
 }

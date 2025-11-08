@@ -59,7 +59,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${poppins.variable} ${roboto.variable}`}>
+    <html
+      lang="en"
+      className={`${poppins.variable} ${roboto.variable} dark`} // ✅ Always dark
+      suppressHydrationWarning
+    >
       <head>
         {/* ✅ Canonical link (important for SEO) */}
         <link
@@ -81,7 +85,16 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body>
+      <body className=" bg-black  text-foreground min-h-screen">
+        {/* Force dark theme at runtime */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              document.documentElement.classList.add('dark');
+              document.documentElement.style.colorScheme = 'dark';
+            `,
+          }}
+        />
         <HeadSchema />
         {children}
       </body>
