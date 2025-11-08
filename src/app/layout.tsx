@@ -86,15 +86,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body className=" bg-black  text-foreground min-h-screen">
-        {/* Force dark theme at runtime */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              document.documentElement.classList.add('dark');
-              document.documentElement.style.colorScheme = 'dark';
-            `,
-          }}
-        />
+       
         <HeadSchema />
         {children}
       </body>

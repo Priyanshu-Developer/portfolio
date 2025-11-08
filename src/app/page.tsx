@@ -3,7 +3,6 @@ import Navbar from "../components/custom/Navbar";
 import About from "../components/sections/About";
 import Skills from "../components/sections/Skills";
 import Projects from "../components/sections/Projects";
-import Testimonials from "../components/sections/Testimonials";
 import Footer from "../components/sections/Footer";
 import Contact from "../components/sections/Contact";
 import Experience from "../components/sections/Experience";

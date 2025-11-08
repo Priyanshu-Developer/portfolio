@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AnimatedHamburger } from "./AnimatedHamburger";
 import { IoMdCloudDownload } from "react-icons/io";
 
@@ -21,7 +21,7 @@ function NavBarButton({ name, link }: { name: string; link: string }) {
       href={link}
       onClick={() => window.scrollTo(0, 0)}
       className="
-        relative block font-medium text-black dark:text-white
+        relative block font-medium text-white
         transition-all duration-300
         hover:text-transparent hover:bg-clip-text
         hover:bg-linear-to-r hover:from-blue-500 hover:to-purple-500
@@ -49,17 +49,35 @@ function MobileMenuButton({ name, link }: { name: string; link: string }) {
   return (
     <a
       href={link}
-      className="text-lg font-medium text-gray-800 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300"
+      className="text-lg font-medium text-gray-200 hover:text-blue-500  transition-colors duration-300"
     >
       {name}
     </a>
   );
 }
 
+const useIsMobile = (query = "(max-width: 639px)") => {
+  const [isMobile, setIsMobile] = useState<boolean>(
+    typeof window !== "undefined" && window.matchMedia(query).matches
+  );
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mediaQuery = window.matchMedia(query);
+    const handleChange = (event: MediaQueryListEvent) => {
+      setIsMobile(event.matches);
+    };
+    mediaQuery.addEventListener("change", handleChange);
+    setIsMobile(mediaQuery.matches);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, [ query]);
+  return isMobile;
+};
+
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
   const toggleMenu = () => setIsOpen((prev) => !prev);
-  const isMobile = React.useMemo(() => window.innerWidth < 768, []);
+  const isMobile = useIsMobile();
 
   React.useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
@@ -70,7 +88,7 @@ export default function Navbar() {
       {/* Logo and Name */}
       <div className="flex items-center gap-2">
         <Image src="/logo.png" alt="Logo" width={40} height={40} />
-        <span className="text-lg font-semibold text-gray-900 dark:text-gray-100 tracking-wide font-poppins">
+        <span className="text-lg font-semibold text-white tracking-wide font-poppins">
           Priyanshu Kumar Singh
         </span>
       </div>
@@ -104,7 +122,7 @@ export default function Navbar() {
         aria-label="Download resume"
         className="inline-block rounded-full p-0.5 bg-linear-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 transition"
       >
-        <span className="block rounded-full bg-white dark:bg-gray-900 px-4 py-2 text-sm font-medium text-gray-900 dark:text-white hover:text-blue-500 dark:hover:text-blue-400 transition sm:text-base">
+        <span className="block rounded-full bg-gray-900 px-4 py-2 text-sm font-medium text-gray-900 dark:text-white hover:text-blue-500 dark:hover:text-blue-400 transition sm:text-base">
           Download Resume
         </span>
       </a>
@@ -117,7 +135,7 @@ export default function Navbar() {
         aria-label="Download resume"
         className="inline-block rounded-full p-0.5 bg-linear-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 transition"
       >
-        <span className="block rounded-full bg-white dark:bg-gray-900 px-4 py-2 text-sm font-medium text-gray-900 dark:text-white hover:text-blue-500 dark:hover:text-blue-400 transition sm:text-base">
+        <span className="block rounded-full bg-gray-900 px-4 py-2 text-sm font-medium text-white  hover:text-blue-500 dark:hover:text-blue-400 transition sm:text-base">
           Download Resume
         </span>
       </a>
