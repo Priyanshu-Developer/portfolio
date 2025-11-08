@@ -1,6 +1,5 @@
 "use client";
 import  {motion} from "motion/react";
-import dynamic from "next/dynamic";
 import PasswordCrack from "../custom/PasswordCracker";
 import { useMemo } from "react";
 import NumberAnimation from "../custom/NumberAnimation";
@@ -8,7 +7,7 @@ export default function About() {
   const skills = useMemo(() => ["Software Engineer", "Full Stack Developer", "Cybersecurity Enthusiast"], []);
   const stats = [
     { label: "Projects Completed", value: "5+" },
-    { label: "Happy Clients", value: "15+" },
+    { label: "Technologies Explored", value: "15+" },
     { label: "Years of Experience", value: "1 +" },
   ];
   const glows=[

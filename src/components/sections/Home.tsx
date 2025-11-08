@@ -1,14 +1,14 @@
 "use client";
-import Image from "next/image";
 import PasswordCracker from "../custom/PasswordCracker";
 import PasswordCrackerAnimation from "../custom/PasswordCrackerAnimation";
 import { useMemo } from "react";
 import { motion } from "motion/react";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaLinkedin, FaGithub,FaInstagram } from "react-icons/fa";
 
 const socialLinks = [
-  { href: "https://www.linkedin.com/in/priyanshu-infosec", label: "LinkedIn", icon: FaLinkedin },
-  { href: "https://github.com/Priyanshu-developer", label: "GitHub", icon: FaGithub },
+   { href: "https://www.linkedin.com/in/priyanshu-infosec", label: "LinkedIn", icon: FaLinkedin },
+      { href: "https://github.com/Priyanshu-developer", label: "GitHub", icon: FaGithub },
+      { href: "https://www.instagram.com/white.devil200214", label: "Instagram", icon: FaInstagram },
 ];
 
 export default function Home() {

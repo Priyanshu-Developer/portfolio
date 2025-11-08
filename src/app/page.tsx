@@ -22,7 +22,6 @@ export default function Page() {
       <Skills />
       <Projects />
       <Experience />
-      <Testimonials />
       <Contact />
       <Footer />
     </div>

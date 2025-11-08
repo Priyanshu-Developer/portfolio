@@ -9,7 +9,7 @@ const MenuItems = [
   { name: "Projects", link: "#projects" },
   { name: "Skills", link: "#skills" },
   { name: "Experience", link: "#experience" },
-  { name: "Testimonials", link: "#testimonials" },
+
   { name: "Contact", link: "#contact" },
 ];
 
@@ -97,6 +97,17 @@ export default function Navbar() {
           <MobileMenuButton key={item.name} name={item.name} link={item.link} />
         ))}
       </div>
+
+      <a
+        href="/Priyanshu-infosec.pdf"
+        download
+        aria-label="Download resume"
+        className="inline-block rounded-full p-0.5 bg-linear-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 transition"
+      >
+        <span className="block rounded-full bg-white dark:bg-gray-900 px-4 py-2 text-sm font-medium text-gray-900 dark:text-white">
+          Download Resume
+        </span>
+      </a>
     </nav>
   );
 }
