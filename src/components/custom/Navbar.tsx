@@ -2,7 +2,6 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { AnimatedHamburger } from "./AnimatedHamburger";
-import { IoMdCloudDownload } from "react-icons/io";
 
 const MenuItems = [
   { name: "Home", link: "#home" },
@@ -10,7 +9,7 @@ const MenuItems = [
   { name: "Projects", link: "#projects" },
   { name: "Skills", link: "#skills" },
   { name: "Experience", link: "#experience" },
-
+  { name: "Certifications", link: "#certifications" },
   { name: "Contact", link: "#contact" },
 ];
 
@@ -117,7 +116,7 @@ export default function Navbar() {
           <MobileMenuButton key={item.name} name={item.name} link={item.link} />
         ))}
         <a
-        href="/Priyanshu-infosec.pdf"
+        href="/Priyanshu-Kumar-Singh.docx"
         download
         aria-label="Download resume"
         className="inline-block rounded-full p-0.5 bg-linear-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 transition"
@@ -130,7 +129,7 @@ export default function Navbar() {
 
       {isMobile == false ?(  
       <a
-        href="/Priyanshu-infosec.pdf"
+        href="/Priyanshu-Kumar-Singh.docx"
         download
         aria-label="Download resume"
         className="inline-block rounded-full p-0.5 bg-linear-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 transition"

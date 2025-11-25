@@ -2,7 +2,7 @@
 import "./globals.css";
 import { Poppins, Roboto } from "next/font/google";
 import HeadSchema from "./HeadSchema";
-import Script from "next/dist/client/script";
+import Script from "next/script";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -18,9 +18,11 @@ const roboto = Roboto({
 
 export const metadata = {
   metadataBase: new URL("https://priyanshu-kumar-singh-portfolio.vercel.app"),
-  title: "Priyanshu Kumar Singh | Cybersecurity Researcher & Developer",
-  description:
-    "Cybersecurity researcher and software developer specializing in threat management, Rust, and Next.js. MCA student at Jain University. Explore my work, certifications, and achievements.",
+  title: {
+    default: "Priyanshu Kumar Singh | Cybersecurity Researcher & Developer",
+    template: "%s | Priyanshu Kumar Singh"
+  },
+  description: "Cybersecurity researcher and software developer specializing in threat management, Rust, and Next.js. MCA student at Jain University.",
   keywords: [
     "Priyanshu Kumar Singh",
     "Cybersecurity Researcher",
@@ -31,13 +33,36 @@ export const metadata = {
     "Network Security",
     "CompTIA Security+",
     "TryHackMe",
+    "Malware Analysis",
+    "Ethical Hacking"
   ],
   authors: [{ name: "Priyanshu Kumar Singh", url: "https://linkedin.com/in/priyanshu-infosec" }],
+  creator: "Priyanshu Kumar Singh",
+  
+  // ✅ Add robots directives
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  
+  // ✅ Add verification tags
+  verification: {
+    google: 'your-google-verification-code',
+    // yandex: 'your-yandex-code',
+    // bing: 'your-bing-code',
+  },
+  
   openGraph: {
     title: "Priyanshu Kumar Singh | Cybersecurity Researcher & Developer",
-    description:
-      "Explore my cybersecurity portfolio and software development journey. Discover my work in malware analysis, penetration testing, and secure software design.",
-    url: "https://priyanshu-kumar-singh-portfolio.vercel.app/",
+    description: "Explore my cybersecurity portfolio and software development journey. Discover my work in malware analysis, penetration testing, and secure software design.",
+    url: "https://priyanshu-kumar-singh-portfolio.vercel.app",
     siteName: "Priyanshu Kumar Singh Portfolio",
     images: [
       {
@@ -50,8 +75,21 @@ export const metadata = {
     locale: "en_IN",
     type: "website",
   },
+  
+  // ✅ Add Twitter Card metadata
+  twitter: {
+    card: "summary_large_image",
+    title: "Priyanshu Kumar Singh | Cybersecurity Researcher & Developer",
+    description: "Cybersecurity researcher specializing in threat management, Rust, and Next.js development.",
+    creator: "@your_twitter_handle",
+    images: ["/og-image.png"],
+  },
+  
+  // ✅ Add alternate languages if applicable
+  alternates: {
+    canonical: "https://priyanshu-kumar-singh-portfolio.vercel.app",
+  },
 };
-
 
 export default function RootLayout({
   children,
@@ -86,7 +124,6 @@ export default function RootLayout({
         </Script>
       </head>
       <body className=" bg-black  text-foreground min-h-screen">
-       
         <HeadSchema />
         {children}
       </body>

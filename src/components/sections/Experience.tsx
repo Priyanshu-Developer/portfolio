@@ -1,6 +1,6 @@
 "use client";
-import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "motion/react";
-import { useRef, useMemo, useState } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef, useMemo } from "react";
 
 export default function Experience() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -31,91 +31,70 @@ export default function Experience() {
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start start", "end end"],
+    offset: ["start end", "end start"],
   });
 
-  const [activeIndex, setActiveIndex] = useState(0);
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const total = experiences.length;
-    const zone = 1 / total;
-    setActiveIndex(Math.min(total - 1, Math.floor(latest / zone)));
-  });
+  // Parallax effect for cards while scrolling
+  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
   return (
     <motion.section
       ref={sectionRef}
       id="experience"
-      className="relative w-full bg-transparent text-white"
-      style={{ height: `${100 * experiences.length}vh` }}
+      className="relative w-full bg-linear-to-b from-slate-900 to-slate-800 text-white py-24"
     >
-      <div className="sticky top-0 w-full h-screen flex flex-col items-center justify-center overflow-hidden">
+      <div className="container mx-auto px-6">
         <motion.h2
-          initial={{ opacity: 0, scale: 0.9, y: 30 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="text-4xl md:text-6xl font-bold mb-20 tracking-tight text-white/90"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="text-4xl md:text-5xl font-bold mb-16 text-center tracking-tight"
         >
           Experience
         </motion.h2>
-        <div className="relative w-full h-[330px] flex items-center justify-center">
-          {/* Timeline horizontally centered */}
-          <motion.div
-            className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-[75vw] h-[3px] bg-linear-to-r from-transparent via-cyan-400/80 to-transparent opacity-80 rounded-full shadow-[0_0_25px_2px_rgba(34,211,238,0.3)]"
-            layout
-          >
-            {/* Timeline dots; spaced left-right */}
-            <div className="absolute flex justify-between items-center w-full h-full top-0 left-0 px-3">
-              {experiences.map((exp, i) => (
+
+        <div className="relative">
+          {/* Vertical Timeline Line */}
+          <div className="absolute left-1/2 top-0 w-0.5 h-full bg-linear-to-b from-cyan-400/40 to-transparent transform -translate-x-1/2"></div>
+
+          {experiences.map((exp, i) => {
+            const cardY = useTransform(scrollYProgress, [0, 1], [50, -50]);
+
+            return (
+              <motion.div
+                key={exp.company}
+                className="relative flex items-center mb-16"
+                animate={{ opacity: 1 }}
+                initial={{ opacity: 0 }}
+                transition={{ duration: 0.6, delay: i * 0.2 }}
+              >
+                {/* Timeline Dot */}
+                <div className="absolute left-1/2 w-4 h-4 rounded-full bg-cyan-400 shadow-lg transform -translate-x-1/2 z-10"></div>
+
+                {/* Card */}
                 <motion.div
-                  key={exp.company}
-                  className={`w-6 h-6 rounded-full ${i === activeIndex
-                    ? "bg-cyan-400 shadow-[0_0_35px_8px_#00ffff]"
-                    : "bg-cyan-800/40"} `}
-                  animate={{
-                    scale: i === activeIndex ? 1.25 : 1,
-                    opacity: i === activeIndex ? 1 : 0.6,
-                  }}
-                  transition={{ duration: 0.4 }}
-                />
-              ))}
-            </div>
-          </motion.div>
-          {/* Experience Card, perfectly vertical center */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={experiences[activeIndex].company}
-              initial={{ opacity: 0, y: 40, scale: 0.97 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -40, scale: 0.97 }}
-              transition={{ duration: 0.68, ease: "easeInOut" }}
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 
-                bg-white/10 border border-cyan-400/10 rounded-2xl p-8 shadow-2xl backdrop-blur-xl
-                w-[85vw] max-w-[600px] text-center"
-            >
-              <h3 className="text-2xl md:text-3xl font-bold text-cyan-300 mb-2">
-                {experiences[activeIndex].role}
-              </h3>
-              <p className="text-lg text-white/80 mb-1">
-                {experiences[activeIndex].company}
-              </p>
-              <p className="text-sm text-white/60 italic mb-4">
-                {experiences[activeIndex].duration}
-              </p>
-              <p className="text-white/85 leading-relaxed mb-4 text-[16px]">
-                {experiences[activeIndex].description}
-              </p>
-              <div className="flex flex-wrap justify-center gap-2 mt-2">
-                {experiences[activeIndex].tech.map((t) => (
-                  <span
-                    key={t}
-                    className="text-xs bg-cyan-400/10 text-cyan-300 px-3 py-1 rounded-full border border-cyan-400/30 shadow-[0_0_10px_1px_rgba(0,255,255,.13)]"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          </AnimatePresence>
+                  style={{ y: cardY }}
+                  className="w-full md:w-5/6 lg:w-4/5 mx-auto bg-white/10 backdrop-blur-lg border border-cyan-400/20 rounded-xl p-8 shadow-xl"
+                >
+                  <h3 className="text-2xl font-bold text-cyan-300 mb-2">{exp.role}</h3>
+                  <p className="text-lg text-white/80 mb-1">{exp.company}</p>
+                  <p className="text-sm text-white/60 italic mb-4">{exp.duration}</p>
+                  <p className="text-white/85 leading-relaxed mb-4">{exp.description}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {exp.tech.map((t) => (
+                      <span
+                        key={t}
+                        className="text-xs bg-cyan-400/10 text-cyan-300 px-3 py-1 rounded-full border border-cyan-400/30 shadow-sm"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </motion.section>

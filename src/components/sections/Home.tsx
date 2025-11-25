@@ -60,8 +60,8 @@ export default function Home() {
             <div className="inline-block overflow-hidden">
               <PasswordCracker
                 target={skills}
-                speed={40}
-                cycles={2}
+                speed={10}
+                cycles={1}
                 showCursor={false}
                 className="font-extrabold text-2xl sm:text-3xl md:text-4xl text-[#0ef0b7]"
               />
@@ -74,8 +74,8 @@ export default function Home() {
             <span>
               <PasswordCrackerAnimation
                 target="Priyanshu Kumar Singh"
-                speed={40}
-                cycles={2}
+                speed={20}
+                cycles={1}
                 showCursor={false}
                 className="font-extrabold text-2xl sm:text-3xl md:text-4xl whitespace-nowrap"
               />
