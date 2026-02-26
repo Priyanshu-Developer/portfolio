@@ -139,6 +139,7 @@ export default function RootLayout({
             </Script>
           </>
         ) : null}
+        <meta name="google-site-verification" content="XiyQXhihzBrSpB7Kyk-LtTqxzLv0MO4Kk6cFuVJuxRI" />
       </head>
       <body className="bg-black text-foreground min-h-screen">
         <HeadSchema />
