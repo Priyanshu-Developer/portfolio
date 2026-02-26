@@ -126,15 +126,15 @@ export default function RootLayout({
         {GA_MEASUREMENT_ID ? (
           <>
             <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=G-5ZRN5MFS3B}`}
-              strategy="afterInteractive"
+              src="https://www.googletagmanager.com/gtag/js?id=G-5ZRN5MFS3B"
+              async
             />
-            <Script id="ga" strategy="afterInteractive">
+            <Script id="ga" >
               {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-5ZRN5MFS3B');
+             window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-5ZRN5MFS3B');
           `}
             </Script>
           </>
