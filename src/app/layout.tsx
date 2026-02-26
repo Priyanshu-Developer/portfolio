@@ -126,7 +126,7 @@ export default function RootLayout({
         {GA_MEASUREMENT_ID ? (
           <>
             <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+              src={`https://www.googletagmanager.com/gtag/js?id=G-5ZRN5MFS3B}`}
               strategy="afterInteractive"
             />
             <Script id="ga" strategy="afterInteractive">
@@ -134,12 +134,12 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}');
+            gtag('config', 'G-5ZRN5MFS3B');
           `}
             </Script>
           </>
         ) : null}
-        <meta name="google-site-verification" content="XiyQXhihzBrSpB7Kyk-LtTqxzLv0MO4Kk6cFuVJuxRI" />
+        
       </head>
       <body className="bg-black text-foreground min-h-screen">
         <HeadSchema />
